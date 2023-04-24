@@ -2,3 +2,4 @@ venv/
 .env
 my-app/.DS_Store
 .DS_Store
+node_modules

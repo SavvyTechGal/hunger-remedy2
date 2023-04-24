@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e4f8ed4c.css",
+    "main.js": "/static/js/main.0007deab.js",
+    "static/media/mt-0473-slide3.jpg": "/static/media/mt-0473-slide3.f481b6c1d77911814894.jpg",
+    "static/media/mt-0473-slide2.jpg": "/static/media/mt-0473-slide2.68b3ae55ad4bd59438d2.jpg",
+    "static/media/mt-0473-slide.jpg": "/static/media/mt-0473-slide.02c5f6b82ba9db2f9365.jpg",
+    "static/media/background1.jpg": "/static/media/background1.ac1a2dd611af4198b3b7.jpg",
+    "static/media/undraw_dog_c7i6.svg": "/static/media/undraw_dog_c7i6.d3906ce0bfc54c79f382e1b28c908a14.svg",
+    "static/media/undraw_cat_epte.svg": "/static/media/undraw_cat_epte.014e0cac9ded85ca70fd8ad5f878c75f.svg",
+    "index.html": "/index.html",
+    "main.e4f8ed4c.css.map": "/static/css/main.e4f8ed4c.css.map",
+    "main.0007deab.js.map": "/static/js/main.0007deab.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4f8ed4c.css",
+    "static/js/main.0007deab.js"
+  ]
+}
