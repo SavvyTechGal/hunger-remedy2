@@ -8,10 +8,6 @@
 // import Auth from './components/authentication/auth.jsx'
 // import Map from './components/map/map'
 
-
-
-
-
 // const AppContainer = styled.div`
 //   width: 100%;
 //   height: 100%;
@@ -21,16 +17,12 @@
 //   justify-content: center;
 // `;
 
-
-
-
-
 // function App() {
 //   return (
 
 //     <div >
 //       <div className="navbar">
-//         <Navbar /> 
+//         <Navbar />
 //       </div>
 //       <Slider />
 
@@ -43,40 +35,30 @@
 //       <div>
 //         <Map />
 //       </div>
-      
-      
-      
-      
+
 //     </div>
-    
-    
+
 //     // <AppContainer>
-      
+
 //     // </AppContainer>
 //   );
 // }
 
 // export default App;
 
-
-
-
-// question form 
-import Form from "./components/questionForm/Form"
-import { FormProvider } from './context/FormContext'
+import Auth from "./components/authentication/Auth";
+import NotAuth from "./components/authentication/NotAuth";
+// question form
+import Form from "./components/questionForm/Form";
+import { FormProvider } from "./context/FormContext";
 
 function App() {
-
   return (
-    <FormProvider>
-      <Form />
-    </FormProvider>
-  )
-
+    <>
+      <Auth />
+      <NotAuth />
+    </>
+  );
 }
 
 export default App;
-
-
-
-
