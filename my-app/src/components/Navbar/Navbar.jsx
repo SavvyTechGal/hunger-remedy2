@@ -2,7 +2,10 @@ import React from "react";
 // import Toggle from "../Toggle/Toggle";
 import "./Navbar.css";
 import { Link } from "react-scroll";
-const navbar = () => {
+import { useAuth0 } from "@auth0/auth0-react";
+
+const Navbar = () => {
+  const { logout, isAuthenticated } = useAuth0();
   return (
     <div className="n-wrapper" id="Navbar">
       {/* left */}
@@ -17,34 +20,30 @@ const navbar = () => {
           <ul style={{ listStyleType: "none" }}>
             <li>
               <Link activeClass="active" to="Navbar" spy={true} smooth={true}>
-                <div className="n-name-home">
-                    Home
-                </div>
-                
+                <div className="n-name-home">Home</div>
               </Link>
             </li>
             <li>
-              <Link to="services" spy={true} smooth={true}>
-                <div className="n-name-list">
-                    Login
-                </div>
-                
+              <Link
+                to="services"
+                spy={true}
+                smooth={true}
+                onClick={() => logout()}
+              >
+                <div className="n-name-list">Logout</div>
               </Link>
             </li>
 
             <li>
-                <Link to="contact" spy={true} smooth={true}>
-                    <div className="n-name-list">Contact Us</div>
-                </Link>
+              <Link to="contact" spy={true} smooth={true}>
+                <div className="n-name-list">Contact Us</div>
+              </Link>
             </li>
-            
           </ul>
-          
         </div>
-        
       </div>
     </div>
   );
 };
 
-export default navbar;
+export default Navbar;
