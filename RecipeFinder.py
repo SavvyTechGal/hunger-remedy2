@@ -1,34 +1,53 @@
-import csv
+import numpy as np 
+import pandas as pd 
 
-# Load the dataset from CSV file
-def load_dataset(filename):
-    recipes = []
-    with open(filename, 'r') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            recipes.append(row)
-    return recipes
+df = pd.read_csv('testdataset.csv')
 
-# Get user input for ingredients
-user_ingredients = input("Enter ingredients separated by commas: ").split(',')
+user_allergies = ['peanuts']
+user_ingredients = ['cinnamon', 'water', 'pepper']
+user_disliked_ingredients = ['milk']
 
-# Load the dataset
-recipes = load_dataset('testdataset.csv')
+# Clearing up nutrition info
+df[['calories','total fat (PDV)','sugar (PDV)','sodium (PDV)','protein (PDV)','saturated fat (PDV)','carbohydrates (PDV)']] = df.nutrition.str.split(",", expand=True) 
+df['calories'] =  df['calories'].apply(lambda x: x.replace('[','')) 
+df['carbohydrates (PDV)'] =  df['carbohydrates (PDV)'].apply(lambda x: x.replace(']',''))
+df[['calories','total fat (PDV)','sugar (PDV)','sodium (PDV)','protein (PDV)','saturated fat (PDV)','carbohydrates (PDV)']] = df[['calories','total fat (PDV)','sugar (PDV)','sodium (PDV)','protein (PDV)','saturated fat (PDV)','carbohydrates (PDV)']].astype('float')
 
-# Find recipe matches based on ingredient match
-recipe_matches = []
-for recipe in recipes:
-    ingredient_matches = [ingredient for ingredient in user_ingredients if ingredient.lower() in recipe['ingredients'].lower()]
-    if len(ingredient_matches) > 0:
-        recipe_matches.append(recipe['name'])
+# Creating a new column with food types (vegetarian or non-vegetarian)
+df['food types'] = np.nan
+df['food types'] = df['food types'].astype('str')
+for i in df.index:
+    if('chicken' in df['ingredients'][i] or 'beef' in df['ingredients'][i] or 'pork' in df['ingredients'][i] or 'turkey' in df['ingredients'][i] or 'fish' in df['ingredients'][i] or 'seafood' in df['ingredients'][i] or 'bacon' in df['ingredients'][i] or 'ham' in df['ingredients'][i] or 'lamb' in df['ingredients'][i] or 'sausage' in df['ingredients'][i] or 'venison' in df['ingredients'][i]):
+        df.loc[i, 'food types'] = 'Non-veg'
+    else:
+        df.loc[i, 'food types'] = 'Veg'
 
-# Print out recipe names with ingredient matches
-if len(recipe_matches) > 0:
-    print("Recipe matches:")
-    for i, recipe_name in enumerate(recipe_matches):
-        print(f"{i+1}. {recipe_name}")
-else:
-    print("No recipe matches found.")
+# Encoding food types as dummy variables
+types = pd.get_dummies(df['food types'])
+df1 = pd.concat([df,types], axis=1)
 
-#so far the code I've written prompts the user to enter ingredients and it prints out the recipes in the 
-# dataset according to the rank match. to test try salt,parsley
+# Filtering out ingredients based on user's allergies, preferred ingredients and disliked ingredients
+for allergy in user_allergies:
+    df1 = df1[~df1['ingredients'].str.contains(allergy, case=False)]
+
+for ingredient in user_ingredients:
+    df1 = df1[df1['ingredients'].str.contains(ingredient, case=False)]
+
+for ingredient in user_disliked_ingredients:
+    df1 = df1[~df1['ingredients'].str.contains(ingredient, case=False)]
+
+# Finding similar recipes based on common ingredients
+similar = df1.ingredients.apply(lambda x: len(set(x.split()) & set(user_ingredients)) / len(set(x.split())))
+df1['similarity'] = similar
+
+# Sorting recipes by similarity and displaying top 10 matches
+recipes = df1.sort_values(by='similarity', ascending=False)[:10].reset_index(drop=True)
+print(recipes)
+
+
+
+#hard to do cuisine, not much info in the dataset  
+#veg and non-veg done
+#dislikes taken into account
+#allergies done 
+
