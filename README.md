@@ -13,3 +13,11 @@ pip install -r requirements.txt
 deactivate
 
 ## Build
+### In Local
+npm start 
+
+### In Production
+npm build
+
+
+### if npm 
