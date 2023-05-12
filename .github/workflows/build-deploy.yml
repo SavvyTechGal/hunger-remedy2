@@ -12,7 +12,7 @@ jobs:
       BUCKET: hunger.remedy.io
       DIST: my-app/build
       REGION: us-east-1
-      DIST_ID: EEKF2GAZQ3EAB
+      DIST_ID: EUUUKJA7TK4I6
 
     steps:
 
