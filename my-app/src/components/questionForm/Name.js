@@ -9,10 +9,10 @@ const Name = () => {
         
       <input
         type="text"
-        id="name"
-        name="name"
+        id="Name"
+        name="Name"
         placeholder="First Name"
-        value={data.name}
+        value={data.Name}
         onChange={handleChange}
       />
     </>

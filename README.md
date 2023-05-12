@@ -13,3 +13,13 @@ pip install -r requirements.txt
 deactivate
 
 ## Build
+
+# Run React
+npm install -g npm
+npm i hero-slider
+npm i react-select
+npm i react-helmet
+npm i react-scroll
+npm i react-scripts
+npm i styled-components
+npm i react-axios

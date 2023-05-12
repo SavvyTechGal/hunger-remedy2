@@ -3,8 +3,9 @@ import useFormContext from "../../hooks/useFormContext";
 import "./question.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 const Form = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0;
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   const {
     page,
@@ -17,6 +18,7 @@ const Form = () => {
     prevHide,
     nextHide,
     submitHide,
+    handleChange,
   } = useFormContext();
 
   const handlePrev = () => setPage((prev) => prev - 1);
@@ -25,7 +27,11 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    data.DislikeIngredients = data.DislikeIngredientsStr.split(','); 
+    console.log("submit test");
+    window.localStorage.setItem('myKey', JSON.stringify(data));
     console.log(JSON.stringify(data));
+    loginWithRedirect()
   };
  
 
@@ -55,17 +61,19 @@ const Form = () => {
           Next
         </button>
 
-        {/* <button
+        <button
           type="submit"
           className={`Button_1 ${submitHide}`}
-          onclick={say()}
-          disabled={!canSubmit}
+          // onClick={() => loginWithRedirect()}
+          // disabled={!canSubmit}
         >
           Submit
-        </button> */}
+        </button>
         </div> 
     </form>
   );
+
+  
 
   return content;
 };

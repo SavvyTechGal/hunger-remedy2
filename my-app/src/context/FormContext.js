@@ -15,13 +15,15 @@ export const FormProvider = ({ children }) => {
     Name: "",
     DietChoice: [],
     CuisineChoice: [],
-    Ingredients: [],
+    DislikeIngredientsStr: "",
+    DislikeIngredients: [],
+    LikeIngredients: []
   });
 
   
 
   const handleChange = (e) => {
-    const type = e.target.type;
+    // const type = e.target.type;
 
     const name = e.target.name;
 
