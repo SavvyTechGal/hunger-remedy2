@@ -46,7 +46,7 @@ const Question = () => {
   const handleDietChange = (selectedOption) => {
     setSelectedDiet(selectedOption);
     data.DietChoice = selectedOption;
-    console.log(JSON.stringify(data));
+    console.log(data);
   };
 
   const handleCuisineChange = (selectedOption) => {

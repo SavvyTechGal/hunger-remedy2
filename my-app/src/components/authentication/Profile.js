@@ -25,9 +25,25 @@ const Profile = () => {
 
   
   const postProfile = () =>{
-    const headers = { 'Content-Type': 'application/json', 'endpoint': 'post/profile' }
+    const storedValue = localStorage.getItem("myKey");
+    const retrievedObject = JSON.parse(storedValue);
+    console.log(retrievedObject);
+    const dietValue = retrievedObject.DietChoice.map(choice => choice.value);
     axios
-    .post('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/profile', userProfile , {headers: headers})
+    .post('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/profile', {
+      profile: {
+        email: user.email
+      },
+      params: {
+        diet: (dietValue),
+        dislikedIngredient: (retrievedObject.DislikeIngredients),
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'endpoint': 'post/profile'
+      }
+      
+    })
     .then((response) => {setResponse(response);displayOutput(response)} )
     .catch((err) => console.log(err));
   }
@@ -38,13 +54,12 @@ const Profile = () => {
   };
 
   const getRecipe = () => {
-    const storedValue = localStorage.getItem("myKey");
-    const retrievedObject = JSON.parse(storedValue);
+    
     // console.log(JSON.stringify(retrievedObject));
     // console.log(inputText);
     // console.log(retrievedObject)
 
-    const dietValue = retrievedObject.DietChoice.map(choice => choice.value);
+    
     
 
 //     fetch('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/recipe', {headers})
@@ -74,17 +89,34 @@ const Profile = () => {
     //   }).catch((err) => console.log(err));
     //   https://jsonplaceholder.typicode.com/todos
 
-    
+    // headers: headers
+    // ,{headers: headers}
+    var input = inputText.split(",");
+    input = input.map(item => item.trim());
+  
     axios
-    .get('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/recipe', {
-        params: {
-                diet: JSON.stringify(dietValue),
-                dislikedIngredient: JSON.stringify(retrievedObject.DislikeIngredients),
-                likeIngredient: JSON.stringify(inputText),
-            }
+    .post('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/profile', {
+      params: {
+        likeIngredient: input,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'endpoint': 'get/recipe'
+      }
+      
     })
     .then((response) => {setResponse(response);displayOutput(response)} )
     .catch((err) => console.log(err));
+
+    // axios
+    // .get('https://wngaesr097.execute-api.us-east-1.amazonaws.com/prod/recipe', {
+    //       params: {
+    //               diet: JSON.stringify(dietValue),
+    //               dislikedIngredient: JSON.stringify(retrievedObject.DislikeIngredients),
+    //               likeIngredient: JSON.stringify(inputText),
+    //       }})
+    // .then((response) => {setResponse(response);displayOutput(response)} )
+    // .catch((err) => console.log(err));
   };
 
   return (
@@ -112,6 +144,8 @@ const Profile = () => {
       <button className="postButton" onClick={() => getRecipe()}>
         Generate Recipe
       </button>
+
+      <button onClick={() => postProfile()}>test</button>
 
       {/* <ul>
         {Object.keys(apiResponse).map((objKey, i) => (

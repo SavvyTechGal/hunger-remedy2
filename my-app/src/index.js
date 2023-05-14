@@ -6,8 +6,13 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 // const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+// const domain = "dev-uumhqwlzvaul0i3g.us.auth0.com"
+// const clientId = "trEaALDCAeOx9SViLoyN8xb4u10fvLh6"
+
 const domain = "dev-uumhqwlzvaul0i3g.us.auth0.com"
-const clientId = "trEaALDCAeOx9SViLoyN8xb4u10fvLh6"
+const clientId = "X6OnhUbcm5gT4Sc2uBrNlr0MXXrlbFuk"
+
+
 
 // import reportWebVitals from './reportWebVitals';
 
