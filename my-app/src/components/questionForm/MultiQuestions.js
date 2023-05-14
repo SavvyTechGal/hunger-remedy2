@@ -1,4 +1,4 @@
-import React,{  useState }  from "react";
+import React, { useState } from "react";
 import Select, { ActionMeta, OnChangeValue, StylesConfig } from "react-select";
 import makeAnimated from "react-select/animated";
 import useFormContext from "../../hooks/useFormContext.js";
@@ -8,7 +8,7 @@ import "./question.css";
 const animatedComponents = makeAnimated();
 
 const option_diet = [
-  { value: "Diet:", label: "Diet", color: "#FFC400",isDisabled: true },
+  { value: "Diet:", label: "Diet", color: "#FFC400", isDisabled: true },
   { value: "All", label: "All", color: "#0052CC" },
   { value: "Gluten-Free", label: "Gluten-Free", color: "#5243AA" },
   { value: "Vegan", label: "Vegan", color: "#FF5630" },
@@ -16,10 +16,8 @@ const option_diet = [
   { value: "Dairy-Free", label: "Dairy-Free", color: "#36B37E" },
 ];
 
-
-
 const option_cuisine = [
-  { value: "Cuisine", label: "Cuisine", color: "#00B8D9",isDisabled: true },
+  { value: "Cuisine", label: "Cuisine", color: "#00B8D9", isDisabled: true },
   { value: "American", label: "American", color: "#00B8D9" },
   { value: "Chinese", label: "Chinese", color: "#00B8D9" },
   { value: "Caribbean", label: "Caribbean", color: "#00B8D9" },
@@ -39,26 +37,21 @@ const option_cuisine = [
   { value: "Vietnamese", label: "Vietnamese", color: "#00B8D9" },
 ];
 
-
-
-
-
-
 const Question = () => {
-  const { data, handleChange} = useFormContext();
+  const { data, handleChange } = useFormContext();
 
   const [selectedDiet, setSelectedDiet] = useState(null);
   const [selectedCuisine, setSelectedCuisine] = useState(null);
 
   const handleDietChange = (selectedOption) => {
     setSelectedDiet(selectedOption);
-    data.DietChoice = selectedDiet;
-    console.log(JSON.stringify(data));
+    data.DietChoice = selectedOption;
+    console.log(data);
   };
 
   const handleCuisineChange = (selectedOption) => {
     setSelectedCuisine(selectedOption);
-    data.CuisineChoice = selectedCuisine;
+    data.CuisineChoice = selectedOption;
     console.log(JSON.stringify(data));
   };
 
@@ -74,12 +67,8 @@ const Question = () => {
           : isFocused
           ? `${color}80`
           : null,
-        color: isDisabled
-          ? '#ccc'
-          : isSelected
-          ? 'white'
-          : color,
-        cursor: isDisabled ? 'not-allowed' : 'default',
+        color: isDisabled ? "#ccc" : isSelected ? "white" : color,
+        cursor: isDisabled ? "not-allowed" : "default",
       };
     },
     singleValue: (styles, { data }) => ({
@@ -90,9 +79,8 @@ const Question = () => {
 
   const content = (
     <>
-
       <div className="question">
-      <h3>What kind of diet do you follow?</h3>
+        <h3>What kind of diet do you follow?</h3>
         <Select
           options={option_diet}
           isMulti
@@ -103,10 +91,11 @@ const Question = () => {
           name=""
           onChange={handleDietChange}
         />
+
       </div>
 
       <div className="question">
-      <h3>What types of cuisine do you enjoy eating the most?</h3>
+        <h3>What types of cuisine do you enjoy eating the most?</h3>
         <Select
           options={option_cuisine}
           isMulti
@@ -123,11 +112,11 @@ const Question = () => {
 
         <input
           type="text"
-          id="Ingredients"
-          name="Ingredients"
+          id="DislikeIngredientsStr"
+          name="DislikeIngredientsStr"
           placeholder="chicken, pepper"
           // pattern="([A-Z])[\w+.]{1,}"
-          value={data.Ingredients}
+          value={data.DislikeIngredientsStr}
           onChange={handleChange}
         />
       </div>

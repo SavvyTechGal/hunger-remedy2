@@ -4,6 +4,10 @@ import "./Navbar.css";
 import { Link } from "react-scroll";
 import { useAuth0 } from "@auth0/auth0-react";
 
+function removeKey(){
+  window.localStorage.removeItem('myKey');
+}
+
 const Navbar = () => {
   const { logout, isAuthenticated } = useAuth0();
   return (
@@ -28,7 +32,7 @@ const Navbar = () => {
                 to="services"
                 spy={true}
                 smooth={true}
-                onClick={() => logout()}
+                onClick={() => {removeKey();logout()}}
               >
                 <div className="n-name-list">Logout</div>
               </Link>
