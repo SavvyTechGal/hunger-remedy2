@@ -54,35 +54,37 @@ import { FormProvider } from "./context/FormContext";
 import HomePage  from "./components/authentication/HomePage";
 import Login from "./components/authentication/login"
 import { Route, Routes } from "react-router-dom";
+import { CallbackPage } from './components/Navbar/callback-page'
 
 
-function App() {
-  return (
-    <>
-    {/* <HomePage /> */}
-      <Auth />
-      {/* <Login /> */}
-      <NotAuth />
-    </>
-  );
-}
-
-export default App;
-
-
-// export const App =() => {
+// function App() {
 //   return (
-//     <HomePage />
-//     // <Routes>
-//     //   <Route path="/" element={<HomePage />} />
-//     //   <Route path="/login" element={<Login />} />
-//     //   ≈
-//     //   {/* <Route path="/get_recipes" element={<ProtectedPage />} /> */}
-//     //   <Route path="/signup" element={<NotAuth />} />
-//     //   {/* <Route path="/callback" element={<CallbackPage />} />
-//     //   <Route path="*" element={<NotFoundPage />} /> */}
-//     // </Routes>
+//     <>
+//     {/* <HomePage /> */}
+//       <Login />
+//       <Auth />
+//       {/* <Login /> */}
+//       <NotAuth />
+//     </>
 //   );
-// };
+// }
 
 // export default App;
+
+
+export const App =() => {
+  return (
+    // <NotAuth />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/get_recipe" element={<Auth />} />
+      {/* <Route path="/get_recipes" element={<ProtectedPage />} /> */}
+      <Route path="/signup" element={<NotAuth />} />
+      <Route path="/callback" element={<CallbackPage />} />
+      {/* <Route path="/callback" element={<CallbackPage />} /> */}
+      {/* <Route path="*" element={<NotFoundPage />} />  */}
+    </Routes>
+  );
+};
+
+export default App;
