@@ -30,8 +30,17 @@ const Form = () => {
     data.DislikeIngredients = data.DislikeIngredientsStr.split(','); 
     console.log("submit test");
     window.localStorage.setItem('myKey', JSON.stringify(data));
+    window.localStorage.setItem('myFlag', "true");
     console.log(JSON.stringify(data));
-    loginWithRedirect()
+    loginWithRedirect({
+      appState: {
+        returnTo: "/get_recipe",
+      },
+      authorizationParams: {
+        screen_hint: "signup",
+      },
+    })
+    
   };
  
 

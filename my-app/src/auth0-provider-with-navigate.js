@@ -5,24 +5,26 @@ import { useNavigate } from "react-router-dom";
 export const Auth0ProviderWithNavigate = ({ children }) => {
   const navigate = useNavigate();
 
-  const domain = "dev-uumhqwlzvaul0i3g.us.auth0.com";
-  const clientId = "trEaALDCAeOx9SViLoyN8xb4u10fvLh6";
-  const redirectUri = "process.env.REACT_APP_AUTH0_CALLBACK_URL";
+  const domain = "dev-uumhqwlzvaul0i3g.us.auth0.com"
+  const clientId = "trEaALDCAeOx9SViLoyN8xb4u10fvLh6"
+  const redirectUri = "http://localhost:3000/callback";
 
   const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
-//   if (!(domain && clientId && redirectUri)) {
-//     return null;
-//   }
+  if (!(domain && clientId && redirectUri)) {
+    return null;
+  }
 
   return (
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-     
-      onRedirectCallback={window.location.origin}
+      authorizationParams={{
+        redirect_uri: redirectUri,
+      }}
+      onRedirectCallback={onRedirectCallback}
     >
       {children}
     </Auth0Provider>

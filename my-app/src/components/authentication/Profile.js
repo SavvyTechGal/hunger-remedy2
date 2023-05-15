@@ -69,7 +69,10 @@ const Profile = () => {
   };
 
   const postProfile = () => {
-    const storedValue = localStorage.getItem("myKey");
+    const myFlag = localStorage.getItem("myFlag");
+    if (myFlag == 'true'){
+      console.log("true");
+      const storedValue = localStorage.getItem("myKey");
     const retrievedObject = JSON.parse(storedValue);
     // console.log(retrievedObject);
     const dietValue = retrievedObject.DietChoice.map((choice) => choice.value);
@@ -95,6 +98,8 @@ const Profile = () => {
         displayOutput(response);
       })
       .catch((err) => console.log(err));
+    }
+    
   };
 
   const handleInputChange = (event) => {
