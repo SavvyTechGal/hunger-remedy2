@@ -4,7 +4,7 @@ import Slider from "../slider/Slider";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
 import Profile from "./Profile"
-import Map from "../map/map";
+
 
 const Auth = () => {
   const { logout, isAuthenticated } = useAuth0();
@@ -17,8 +17,6 @@ const Auth = () => {
         </div>
         <Slider />
         <Profile />
-
-        <Map />
       </>
     )
   );

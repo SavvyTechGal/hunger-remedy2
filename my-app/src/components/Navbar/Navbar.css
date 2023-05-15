@@ -38,6 +38,7 @@
     color:white
   }
   .n-right {
+    margin-left: 25%;
     flex: 1;
     display: flex;
     align-items: center;
