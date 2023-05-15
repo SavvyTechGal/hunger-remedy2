@@ -38,11 +38,11 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="contact" spy={true} smooth={true}>
                 <div className="n-name-list">Contact Us</div>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

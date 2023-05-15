@@ -39,3 +39,48 @@
 .container{
     margin-top: 30px;
 }
+
+table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+
+th,
+td {
+    text-align:center;
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+th:last-child,
+td:last-child{
+    border-right: 0;
+}
+
+ol {
+    margin-left: 20px;
+    text-align: left;
+}
+
+
+.saveButton {
+    color: black;
+    /* width: 20%; */
+    padding: 5px 5px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    border-color: #7ac4ab;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.saveButton:hover{
+    background-color: #7ac4ab
+}

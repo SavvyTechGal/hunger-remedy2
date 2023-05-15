@@ -45,20 +45,44 @@
 // }
 
 // export default App;
-
+import React from "react";
 import Auth from "./components/authentication/Auth";
 import NotAuth from "./components/authentication/NotAuth";
 // question form
 import Form from "./components/questionForm/Form";
 import { FormProvider } from "./context/FormContext";
+import HomePage  from "./components/authentication/HomePage";
+import Login from "./components/authentication/login"
+import { Route, Routes } from "react-router-dom";
+
 
 function App() {
   return (
     <>
+    {/* <HomePage /> */}
       <Auth />
+      {/* <Login /> */}
       <NotAuth />
     </>
   );
 }
 
 export default App;
+
+
+// export const App =() => {
+//   return (
+//     <HomePage />
+//     // <Routes>
+//     //   <Route path="/" element={<HomePage />} />
+//     //   <Route path="/login" element={<Login />} />
+//     //   ≈
+//     //   {/* <Route path="/get_recipes" element={<ProtectedPage />} /> */}
+//     //   <Route path="/signup" element={<NotAuth />} />
+//     //   {/* <Route path="/callback" element={<CallbackPage />} />
+//     //   <Route path="*" element={<NotFoundPage />} /> */}
+//     // </Routes>
+//   );
+// };
+
+// export default App;
