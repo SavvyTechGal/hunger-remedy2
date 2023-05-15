@@ -7,7 +7,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
 
   const domain = "dev-uumhqwlzvaul0i3g.us.auth0.com"
   const clientId = "trEaALDCAeOx9SViLoyN8xb4u10fvLh6"
-  const redirectUri = "http://localhost:3000/callback";
+  const redirectUri = "https://d2y3vjbwb827u.cloudfront.net/callback";
 
   const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || window.location.pathname);
